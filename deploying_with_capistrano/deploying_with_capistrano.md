@@ -70,6 +70,10 @@ Specify a **stage**, and a **task** to run on it:
 
 ```bash
 cap production deploy
+
+cap staging deploy:migrate
+
+cap custom_stage custom_namespace:custom_task
 ```
 
 ^ We'll come back to exactly what this does in a minute
@@ -194,4 +198,8 @@ A certain number of previous releases are kept around so that you can roll back.
 # Thanks!
 
 Capistrano site: [capistranorb.com](http://capistranorb.com/)
+
+This presentation: [On my GitHub](https://github.com/davefp/presentations/blob/master/deploying_with_capistrano/deploying_with_capistrano.md)
+
+My blog: [theflyingdeveloper.com](http://theflyingdeveloper.com)
 
