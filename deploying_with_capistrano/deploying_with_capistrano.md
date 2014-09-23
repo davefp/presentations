@@ -22,9 +22,9 @@ footer: David Underwood @davefp
 
 # One-Time Operations
 
-* Provision server
-* Set up database and other supporting services
-* Create credentials for external services
+* Provision server.
+* Set up database and other supporting services.
+* Create credentials for external services.
 
 ^ Capistrano (and this talk) don't cover these tasks.
 
@@ -32,10 +32,10 @@ footer: David Underwood @davefp
 
 # Per-Deploy Operations
 
-* Fetch new code
-* Run migrations
-* Update configuration
-* Restart (or stop/start) app
+* Fetch new code.
+* Run migrations.
+* Update configuration.
+* Restart (or stop/start) app.
 
 ^ These are the tasks that Capistrano can help you with.
 
@@ -47,13 +47,13 @@ footer: David Underwood @davefp
 
 # The Basics
 
-Add it to your gemfile
+Add it to your gemfile:
 
 ```ruby
 gem 'capistrano'
 ```
 
-Get it installed
+Get it installed:
 
 ```
 bundle install
@@ -76,7 +76,7 @@ cap staging deploy:migrate
 cap custom_stage custom_namespace:custom_task
 ```
 
-^ We'll come back to exactly what this does in a minute
+^ We'll come back to exactly what this does in a minute.
 
 ---
 
@@ -100,11 +100,11 @@ Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
 
 ^ Common tasks (e.g. deploying Rails apps) are covered by pre-existing gems.
 
-^ Here's a Capfile from a project of mine. You can see I'm including all the default Cap tasks at the bottom, and also pulling in specific tasks from some gems (rbenv, rails, unicorn)
+^ Here's a Capfile from a project of mine. You can see I'm including all the default Cap tasks at the bottom, and also pulling in specific tasks from some gems (rbenv, rails, unicorn).
 
 ---
 
-Configuration common to all states is found in `config/deploy.rb`
+Configuration common to all states is found in `config/deploy.rb`.
 
 ```ruby
 lock '3.2.1'
@@ -163,11 +163,13 @@ role :db,  %w{deploy@arenagym.net:2222}
 
 Linked files are any files that are not part of your codebase that you need to run your app.
 
-They persist from deploy to deploy
+They persist from deploy to deploy.
 
 * database.yml
 * .env, config.yml, or secrets.yml
 * pid files (e.g. for unicorn restarts)
+
+^ You can update these manually without messing with your app
 
 ---
 
@@ -178,6 +180,8 @@ Each time you deploy, your code is put in a new folder alongside the old stuff.
 When everything is ready, this folder is symlinked to the 'current' folder to minimise downtime.
 
 A certain number of previous releases are kept around so that you can roll back.
+
+^ Deploys are named with a timestamp
 
 ---
 
